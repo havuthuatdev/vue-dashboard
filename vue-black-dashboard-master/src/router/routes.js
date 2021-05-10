@@ -53,8 +53,8 @@ const routes = [
         component: TableList
       },
       {
-        path: "user-login",
-        name: "user-login",
+        path: "admin-login",
+        name: "admin-login",
         component: Login
       },
 

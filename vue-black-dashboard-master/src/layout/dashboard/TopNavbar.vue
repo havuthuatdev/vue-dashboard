@@ -147,8 +147,8 @@
         this.showMenu = !this.showMenu;
       },
       Logout(){
-        alert("bsahdb")
-        // this.$router.push("user-login")
+        // this.$store.dispatch("logoutUser")
+        this.$router.push("admin-login")
       }
     }
   };

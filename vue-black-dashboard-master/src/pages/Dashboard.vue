@@ -173,7 +173,7 @@ export default {
     return {
       bigLineChart: {
         allData: [
-          [100, 70, 90, 70, 85, 60, 75, 60, 90, 80, 110, 100],
+          [null, null, null, null, null, null, null, null, null, null, null, null],
           [80, 120, 105, 110, 95, 105, 90, 100, 80, 95, 70, 120],
           [60, 80, 65, 130, 80, 105, 90, 130, 70, 115, 60, 130],
         ],
@@ -336,6 +336,7 @@ export default {
       this.$refs.bigChart.updateGradients(chartData);
       this.bigLineChart.chartData = chartData;
       this.bigLineChart.activeIndex = index;
+      console.log(this.bigLineChart.chartData.datasets[0].data);
     },
   },
   mounted() {

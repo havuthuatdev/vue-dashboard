@@ -57,9 +57,12 @@
     },
     methods: {
       hasValue(item, column) {
+        
         return item[column.toLowerCase()] !== "undefined";
+        
       },
       itemValue(item, column) {
+        // console.log(this.data);
         return item[column.toLowerCase()];
       }
     }
