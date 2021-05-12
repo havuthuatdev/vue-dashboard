@@ -10,8 +10,8 @@ export const getPhotographer = ({ commit }) =>{
     // commit("SET_PHOTOGRAPHER", photographer);
 }
 
-export const totalBookingMonth = () =>{
-    Photographer.totalBookingMonth("03").then(()=>{
-        
+export const totalBookingMonth = ({ commit }, month) =>{
+    Photographer.totalBookingMonth(month).then((response)=>{
+        commit("SET_TOTALBOOKINGMONTH", response.data);
     })
 }

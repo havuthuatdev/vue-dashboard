@@ -1,7 +1,7 @@
 import {api} from './api'
 
-// export default {
-//     all(){
-//         return api.get("customer/index");
-//     }
-// }
+export default {
+    login(admin){
+        return api.post("login", admin);
+    }
+}

@@ -173,7 +173,7 @@ export default {
     return {
       bigLineChart: {
         allData: [
-          [null, null, null, null, null, null, null, null, null, null, null, null],
+          [10, 20, null, null, null, null, null, null, null, null, null, null],
           [80, 120, 105, 110, 95, 105, 90, 100, 80, 95, 70, 120],
           [60, 80, 65, 130, 80, 105, 90, 130, 70, 115, 60, 130],
         ],
@@ -336,8 +336,15 @@ export default {
       this.$refs.bigChart.updateGradients(chartData);
       this.bigLineChart.chartData = chartData;
       this.bigLineChart.activeIndex = index;
-      console.log(this.bigLineChart.chartData.datasets[0].data);
+      console.log(this.bigLineChart.allData[index][0]);
     },
+    // 
+    totalMonth(){
+      for (let index = 0; index < 12; index++) {
+        this.bigLineChart.allData[index][index]
+        console.log(this.bigLineChart.allData[index][index]);
+      }
+    }
   },
   mounted() {
     this.i18n = this.$i18n;
