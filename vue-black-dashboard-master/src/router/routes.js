@@ -10,7 +10,7 @@ const Notifications = () => import(/* webpackChunkName: "common" */"@/pages/Noti
 // const Maps = () => import(/* webpackChunkName: "common" */ "@/pages/Maps.vue");
 const Typography = () => import(/* webpackChunkName: "common" */ "@/pages/Typography.vue");
 const TableList = () => import(/* webpackChunkName: "common" */ "@/pages/TableList.vue");
-const Login = () => import(/* webpackChunkName: "common" */ "../components/auth/Login.vue");
+const Login = () => import(/* webpackChunkName: "common" */ "@/layout/dashboard/Login.vue");
 const routes = [
   {
     path: "/",

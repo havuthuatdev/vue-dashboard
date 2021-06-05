@@ -1,7 +1,8 @@
-import {api} from './api'
+// import {api} from './api'
 
-export default {
-    login(admin){
-        return api.post("login", admin);
-    }
-}
+// export default {
+
+//     login(admin){
+//         return api.post("login", admin);
+//     }
+// }

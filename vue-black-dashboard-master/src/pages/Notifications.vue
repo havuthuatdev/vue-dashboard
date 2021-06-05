@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <div class="col-md-6">
+    <!-- <div class="col-md-6">
       <card>
         <h4 slot="header">Notifications Style</h4>
         <base-alert type="info">
@@ -38,83 +38,135 @@
           <span><b> Danger - </b> This is a regular notification made with ".alert-danger"</span>
         </base-alert>
       </card>
-    </div>
-    <div class="col-md-12">
+    </div>-->
+    <div class="col-md-6">
       <card>
-        <div class="places-buttons">
-          <div class="row">
-            <div class="col-md-6 ml-auto mr-auto text-center">
-              <h4 class="card-title">
-                Notifications Places
-                <p class="category">Click to view notifications</p>
-              </h4>
+        <form>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Code</label>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="abcd123"
+              v-model="voucherForm.code"
+            />
+            <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Description</label>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="abcd123"
+              v-model="voucherForm.description"
+            />
+            <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Count</label>
+            <input
+              type="number"
+              class="form-control"
+              placeholder="abcd123"
+              v-model="voucherForm.count"
+            />
+            <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Denomination</label>
+            <input
+              type="number"
+              class="form-control"
+              placeholder="abcd123"
+              v-model="voucherForm.denomination"
+            />
+            <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+          </div>
+          <div class="form-group">
+            <label for="example-datetime-local-input">Date and time</label>
+            <div class="col-10">
+              <input
+                class="form-control"
+                type="datetime-local"
+                value="2011-08-19T13:45:00"
+                id="example-datetime-local-input"
+                v-model="voucherForm.datetime1"
+              />
             </div>
           </div>
-          <div class="row">
-            <div class="col-lg-8 ml-auto mr-auto">
-              <div class="row">
-                <div class="col-md-4">
-                  <base-button type="primary" block @click="notifyVue('top', 'left')">Top Left</base-button>
-                </div>
-                <div class="col-md-4">
-                  <base-button type="primary" block @click="notifyVue('top', 'center')">Top Center</base-button>
-                </div>
-                <div class="col-md-4">
-                  <base-button type="primary" block @click="notifyVue('top', 'right')">Top Right</base-button>
-                </div>
-              </div>
+          <div class="form-group">
+            <label for="example-datetime-local-input">Date and time</label>
+            <div class="col-10">
+              <input
+                class="form-control"
+                type="datetime-local"
+                value="2011-08-1913:45:00"
+                id="example-datetime-local-input"
+                v-model="voucherForm.datetime2"
+              />
             </div>
           </div>
-          <div class="row">
-            <div class="col-lg-8 ml-auto mr-auto">
-              <div class="row">
-                <div class="col-md-4">
-                  <base-button type="primary" block @click="notifyVue('bottom', 'left')">Bottom Left</base-button>
-                </div>
-                <div class="col-md-4">
-                  <base-button type="primary" block @click="notifyVue('bottom', 'center')">Bottom Center</base-button>
-                </div>
-                <div class="col-md-4">
-                  <base-button type="primary" block @click="notifyVue('bottom', 'right')">Bottom Right</base-button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+          <button type="submit" class="btn btn-primary" @click.prevent="submitForm">Submit</button>
+        </form>
       </card>
     </div>
   </div>
 </template>
 <script>
-  import NotificationTemplate from './Notifications/NotificationTemplate';
-  import { BaseAlert } from '@/components';
+import NotificationTemplate from "./Notifications/NotificationTemplate";
+import { BaseAlert } from "@/components";
 
-  export default {
-    components: {
-      BaseAlert
-    },
-    data() {
-      return {
-        type: ["", "info", "success", "warning", "danger"],
-        notifications: {
-          topCenter: false
-        }
-      };
-    },
-    methods: {
-      notifyVue(verticalAlign, horizontalAlign) {
-        const color = Math.floor(Math.random() * 4 + 1);
-        this.$notify({
-          component: NotificationTemplate,
-          icon: "tim-icons icon-bell-55",
-          horizontalAlign: horizontalAlign,
-          verticalAlign: verticalAlign,
-          type: this.type[color],
-          timeout: 0
+export default {
+  components: {
+    BaseAlert,
+  },
+  data() {
+    return {
+      // type: ["", "info", "success", "warning", "danger"],
+      // notifications: {
+      //   topCenter: false
+      // }
+      voucherForm: {
+        code: "",
+        description: "",
+        count: "",
+        denomination: "",
+        datetime1: "",
+        datetime2: "",
+      },
+    };
+  },
+  methods: {
+    submitForm() {
+      // console.log(this.voucherForm.datetime2);
+      debugger;
+      this.$store
+        .dispatch("createVoucher", {
+          code: this.voucherForm.code,
+          description: this.voucherForm.description,
+          count: this.voucherForm.count,
+          denomination: this.voucherForm.denomination,
+          datetime1: this.voucherForm.datetime1,
+          datetime2: this.voucherForm.datetime2,
+        })
+        .then(() => {
+          debugger;
+          this.$route.push("dashboard");
         });
-      }
-    }
-  };
+    },
+    notifyVue(verticalAlign, horizontalAlign) {
+      const color = Math.floor(Math.random() * 4 + 1);
+      this.$notify({
+        component: NotificationTemplate,
+        icon: "tim-icons icon-bell-55",
+        horizontalAlign: horizontalAlign,
+        verticalAlign: verticalAlign,
+        type: this.type[color],
+        timeout: 0,
+      });
+    },
+  },
+};
 </script>
 <style>
 </style>
